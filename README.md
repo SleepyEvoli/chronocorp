@@ -128,3 +128,29 @@ Put the files on a server together with the `latest.yml` in the same folder \
 The publishing URL in the `package.json` will look for the folder URL and automatically search for updates by reading
 the
 `latest.yml` file and check for the latest application version.
+
+## Presentation
+
+Dashboard with Drag and Drop
+![image1](https://i.imgur.com/SbPN902.png)
+
+Overview Last Time Submits
+![image2](https://i.imgur.com/HzmC2n2.png)
+
+Project & Task List
+![image3](https://i.imgur.com/W3RyVMV.png)
+
+Task Detail View
+![image4](https://i.imgur.com/FCirFAd.png)
+
+Task Detail View with Comments
+![image5](https://i.imgur.com/atYxQE2.png)
+
+Task Assignment Overview and Drag and Drop
+![image6](https://i.imgur.com/dQgdvcK.png)
+
+Timer View in small format for smaller screens or phone
+![image7](https://i.imgur.com/8YCJJOd.png)
+
+Drag and Drop Windows possible from the Dashboard
+![image8](https://i.imgur.com/2QO7PI7.png)
