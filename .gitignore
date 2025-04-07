@@ -1,0 +1,12 @@
+node_modules
+public
+dist
+.env
+/.vscode/
+/.idea/
+*.js.map
+*.js
+dist_electron
+rnote
+sample-data
+package-lock.json

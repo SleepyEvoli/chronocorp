@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@shareMain/*": [
+        "../share/*"
+      ]
+    },
+    "outDir": "../../dist"
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

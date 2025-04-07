@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@share/*": [
+        "../share/*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    },
+    "types": [
+      "vite/client",
+      "vue",
+      "node"
+    ]
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.d.ts",
+    "./**/*.vue",
+    "../share/**/*",
+    "../../node_modules/@types/node/buffer.d.ts"
+  ],
+  "exclude": [
+    "../main/**/*"
+  ]
+}

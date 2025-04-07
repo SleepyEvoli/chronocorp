@@ -1,93 +1,130 @@
 # ChronoCorp
 
+ChronoCorp is a front-end tool designed for Active Collabs, simplifying time tracking and task management.\
+Originally developed as a final exam project for Intercorp, it aims to make your workflow more efficient.\
+Its main intention is using the time tracking system, but it also includes a task management system.
 
+## Features
 
-## Getting started
+- Time Tracker with Drag and Drop
+- Access Subtasks comments, and time records directly from your time tracker
+- Access your pinned tasks and their comments
+- Keep your tracking organized by day and submit when you are ready with one click
+- Edit your already submitted times quick with inline editing
+- Quick Task Search
+- Fast Task editing
+- Open Jitsi Meet from the task view
+- Go directly to the task in ActiveCollab
+- Lazy Tracking for quick Time tracking with just one click
+- Manage your assignments just by drag and drop
+- Mini Time Tracker adjusted for a smaller window
+- The rich text editor supports to copy and paste images right into the editor
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Brief guide
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Time Records and Trackings
 
-## Add your files
+We distinguish between time records and trackings. \
+Time records refer to submitted times, while trackings represent the times you are actively tracking.\
+The focused tracking is the one currently being tracked, visible in the timer on the dashboard.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+### Add a tracking
+
+To start tracking time, you can
+
+- Add a tracking in the task view by clicking the plus icon on the timetable
+- Start tracking in the assignment view
+- Drag and drop a pinned task into the time tracker
+
+This automatically creates a tracking visible on the dashboard.
+
+### Change your focused tracking
+
+You can switch your focused tracking by dragging and dropping an existing tracking or pinned task into the time tracker
+on the dashboard.
+
+### Submit your trackings
+
+Submit all your tracked times for the day by clicking the large submit button on the table in the dashboard.
+You can also submit an individual tracking by right-clicking on it.
+
+You can see the trackings on your dashboard or on the task itself.
+
+### Edit time records and trackings
+
+Time records and trackings can be edited inline for a faster workflow.
+Simply click on a time record to make changes, and they will be saved automatically.
+
+### Edit Task Assignments
+
+Task assignments can be changed by dragging and dropping them in their dedicated assignment (View) or directly within
+the task itself.
+
+### Lazy Records
+
+To add a lazy record, click the rocket button in the task detail view.\
+Once created, lazy records appear in the right feature bar. Clicking on them instantly creates a time record.
+
+### Quick Task Search
+
+Before you can use the quick task search, you need to pull them by clicking the refresh button.
+
+### Example `chronocorp.desktop`
 
 ```
-cd existing_repo
-git remote add origin https://git.intercorp.de/vinzenz/chronocorp.git
-git branch -M main
-git push -uf origin main
+[Desktop Entry]
+Name=ChronoCorp 0.0.10
+Exec=/home/vinzenz/My_Applications/chronocorp/ChronoCorp-0.0.10.AppImage --no-sandbox
+Icon=/home/vinzenz/My_Applications/chronocorp/icon.png
+Terminal=false
+Type=Application
 ```
 
-## Integrate with your tools
+## Using the console in the application
 
-- [ ] [Set up project integrations](https://git.intercorp.de/vinzenz/chronocorp/-/settings/integrations)
+I enabled the console for debugging purposes. `Ctrl + Shift + I`
 
-## Collaborate with your team
+## Use
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### Using on Linux (Debian Based)
 
-## Test and Deploy
+To use ChronoCorp on Linux, you need to disable the Sandbox.\
+Make sure you installed `libfuse2`
 
-Use the built-in continuous integration in GitLab.
+```
+sudo apt install -y libfuse2 && ./chronocorp.AppImage --no-sandbox
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### Using on Windows
 
-***
+Just open the `.exe` file
 
-# Editing this README
+## Deployment
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Building executable for the current platform:\
+`npm run electron:build`
 
-## Suggestions for a good README
+Using Docker to build the executables for Windows:\
+`docker run --rm -v ${PWD}:/project -v ${PWD}/dist_electron:/project/dist_electron electronuserland/builder:wine bash -c "npm install --arch=x64 --platform=win32 && npm run build && npm run electron:build-win"`
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Using Docker to build the executables for Linux:\
+`docker run --rm -v ${PWD}:/project -v ${PWD}/dist_electron:/project/dist_electron electronuserland/builder:10 bash -c "npm install --platform=linux && npm run build && npm run electron:build-linux"`
 
-## Name
-Choose a self-explaining name for your project.
+Using Docker to build the executables for macOS:\
+`docker run --rm -v ${PWD}:/project -v ${PWD}/dist_electron:/project/dist_electron electronuserland/builder:wine bash -c "npm install && npm run build && npm run electron:build-mac"`
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Building for macOS (Needs a macOS machine):\
+`rm ./package-lock.json && npm install && npm run build && npm run electron:build --mac`
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+**Important:** On Linux (When not using docker) and Mac the `node_modules` and the `package-lock.json` need to be
+deleted before building the
+applications.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### Auto Update
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+This will create the application and a `latest.yml` file for the auto-updater.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Put the files on a server together with the `latest.yml` in the same folder \
+The publishing URL in the `package.json` will look for the folder URL and automatically search for updates by reading
+the
+`latest.yml` file and check for the latest application version.

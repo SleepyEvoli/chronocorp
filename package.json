@@ -1,0 +1,84 @@
+{
+  "name": "chronocorp",
+  "version": "0.0.14",
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "start:electron": "electron ./dist/main/main.js",
+    "build:main": "tsc -p ./src/main/tsconfig.json",
+    "build:renderer": "vite build --config ./src/renderer/vite.config.ts",
+    "build": "npm run build:renderer && npm run build:main",
+    "dev:main": "nodemon --watch ./src/main --ext ts --exec \"tsc -p ./src/main/tsconfig.json && electron ./dist/main/main.js\"",
+    "dev:renderer": "vite --debug --config ./src/renderer/vite.config.ts",
+    "dev": "npm run build && concurrently \"npm run dev:main\" \"npm run dev:renderer\"",
+    "electron:build": "electron-builder",
+    "electron:build-win": "electron-builder --win",
+    "electron:build-linux": "electron-builder --linux",
+    "electron:build-mac": "electron-builder --mac",
+    "electron:build-all": "electron-builder --win --linux",
+    "postinstall": "electron-builder install-app-deps",
+    "check:renderer": "npx vue-tsc --noEmit --pretty false -p ./src/renderer/tsconfig.json",
+    "check:main": "npx vue-tsc --noEmit -p ./src/main/tsconfig.json",
+    "check": "npm run check:renderer && npm run check:main"
+  },
+  "build": {
+    "appId": "com.intercorp.chronocorp",
+    "productName": "ChronoCorp",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**"
+    ],
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://chronocorp.intercorp-preview.de"
+      }
+    ]
+  },
+  "author": "Vinzenz Wetzel",
+  "description": "ChronoCorp is an application for intercorp. to manage their projects and times.",
+  "license": "Proprietary",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/compiler-sfc": "^3.5.12",
+    "cli-truncate": "^2.1.0",
+    "electron": "^32.1.2",
+    "electron-builder": "^25.1.8",
+    "nodemon": "^3.1.7",
+    "sass": "^1.79.1",
+    "typescript": "^5.7.3",
+    "vite": "^5.4.8",
+    "vite-svg-loader": "^5.1.0",
+    "vue-loader": "^17.4.2",
+    "vue-style-loader": "^4.1.3",
+    "vue-tsc": "^2.2.0"
+  },
+  "dependencies": {
+    "@types/node": "^22.7.4",
+    "concurrently": "^9.0.1",
+    "dotenv": "^16.4.5",
+    "electron-log": "^5.3.0",
+    "electron-updater": "^6.3.9",
+    "fuzzy": "^0.1.3",
+    "pinia": "^2.2.2",
+    "quill": "^2.0.3",
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5"
+  }
+}

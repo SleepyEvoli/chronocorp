@@ -1,0 +1,19 @@
+@use 'variables' as *;
+
+.info {
+    width: 100%;
+    font-size: 0.75rem;
+    color: $primary-color-1;
+}
+
+.no-bg {
+    background-color: unset;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.low-opacity {
+    opacity: 0.5;
+}
